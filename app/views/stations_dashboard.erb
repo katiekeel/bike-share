@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> Station Dashboard </title>
+  </head>
+  <body>
+    <h3>Total Stations <%= Station.total_stations %></h3>
+    <h3>Average Bikes/Station <%= Station.average_bikes_per_station %></h3>
+    <h3>Stations With Most Bikes --- <%= Station.most_available %> Available @ </h3>
+    <select class="" name="stations[name]">
+      <% Station.stations_with_most_bikes_available.each do |station| %>
+        <option value=<%= station.id %>><%= station.name %></option>
+      <% end %>
+    </select>
+    <h3>Stations With least Bikes --- <%= Station.least_available %> Available @ </h3>
+    <select class="" name="stations[name]">
+      <% Station.stations_with_least_bikes_available.each do |station| %>
+        <option value=<%= station.id %>><%= station.name %></option>
+      <% end %>
+    </select>
+    <h3><%= (Station.most_recent_install_station)[0].name %> Is the newest station</h3>
+    <h3><% (Station.oldest_installed_station).each  do |station| %>
+      <%= station.name + ", " %>
+      <% end %>
+       are the oldest stations.
+   </body>
+</html>

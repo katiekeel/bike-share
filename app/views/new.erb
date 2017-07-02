@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title> New Stations </title>
+  </head>
+  <body>
+    <h1>Create New Stations</h1>
+    <a href="/stations">All Stations</a>
+    <a href="/trips">All Trips</a>
+    <a href="/">Home</a>
+    <form class="" action="/stations" method="post">
+      <label for="">Name:</label>
+      <input type="textfield" name="station[name]" value="">
+      <label for="">City</label>
+      <select name="station[city_id]" value="">
+        <% @city.each do |city| %>
+          <option value=<%= city.id %>><%= city.city %></option>
+        <% end %>
+      </select>
+      <label for="">Dock Count</label>
+      <input type="integer" name="station[dock_count]" value="">
+      <label for="">Installation Date</label>
+      <input type="date" name="station[installation_date]" value="">
+      <input type="submit" name="submit" value="Create New Station" />
+    </form>
+  </body>
+</html>
+
+
+<!-- Build out the ability to select a drop down menu for day when with team -->
+<!-- Auto Populate a select and drop down method for cities -->
