@@ -23,6 +23,4 @@ RSpec.describe "User creates a new trip" do
     expect(page).to have_content("Home")
   end
 
-  it
-
 end

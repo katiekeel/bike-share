@@ -1,14 +1,14 @@
 <h1>Edit A Weather Condition</h1>
 
 
-<form class="" action="/conditions/<%= Date.find(@condition.date_id).date %>" method="post">
+<form class="" action="/conditions/<%= BikeDate.find(@condition.date_id).date %>" method="post">
 
   <input type="hidden" name="_method" value="PUT">
 
   <label for="Date">Date:</label>
 
-   #placeholder for grbbing date from drop down and getting date id
-  <input type="date" name="condition[date_id] = Date.find_by(date: ?).id" value="<%= @condition.date_id %>"></br>
+  <!-- placeholder for grabbing date from drop down and getting date id -->
+  <input type="date" name="condition[date_id]" value="<%= @condition.date_id %>"></br>
 
   <label for="Max Temp">Max Temp:</label>
   <input type="integer" name="condition[max_temp]" value="<%= @condition.max_temp %>"></br>

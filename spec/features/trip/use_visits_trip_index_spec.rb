@@ -51,7 +51,7 @@ RSpec.describe "User visits Trips page" do
     click_button('Delete')
 
     expect(current_path).to eq "/trips"
-    expect(page).to have_content("All Trips")
+    expect(page).to have_content("Trip Index")
   end
 
   #should add tests for pagination and ordered by date

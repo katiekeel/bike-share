@@ -125,17 +125,18 @@ class BikeShareApp < Sinatra::Base
 
   put '/conditions/:id' do |id|
     files
+    params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
     @condition = Condition.update(id.to_i, params[:condition])
-
     redirect "/conditions/#{id}"
   end
 
   post '/conditions' do
     files
-    if params[:condition][:date] == "" || params[:condition][:mean_temp] == 0
+    params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
+    if params[:condition][:date_id] == "" || params[:condition][:mean_temp] == ""
       erb :"stations/error"
     else
-      @weather = Condition.create(params[:weather])
+      @weather = Condition.create(params[:condition])
       redirect "/conditions/#{@weather.id}"
     end
   end

@@ -5,45 +5,33 @@
     <div class="row">
 
     <div class="col-md-6">
-      <h3 class="card-text">Total Number of Stations</h3>
-      <h4><%= Station.total_stations %></h4>
+      <h3 class="card-text">Highest/Lowest/Average Rides by 10 Degrees Here</h3>
     </div>
 
     <div class="col-md-6">
-      <h3>Average Bikes Per Station</h3>
-      <h4> <%= Station.average_bikes_per_station.to_i %></h4>
+      <h3>Highest/Lowest/Average Rides by Precipitation Here</h3>
     </div>
 
-  <div class="col-md-6">
-    <h3>Stations With Most Bikes</h3>
-    <select class="" name="stations[name]">
-      <% Station.stations_with_most_bikes_available.each do |station| %>
-      <option href="/stations/<%= station.id %>" value=<%= station.id %>><%= station.name %></option>
-        <% end %>
-      </select>
-      <h5>Number of Bikes: <%= Station.most_available %></h5>
-    </div>
+  </div>
+
+  <div class="row">
 
   <div class="col-md-6">
-    <h3>Stations With least Bikes</h3>
-    <select class="" name="stations[name]">
-      <% Station.stations_with_least_bikes_available.each do |station| %>
-      <option value=<%= station.id %>><%= station.name %></option>
-      <% end %>
-    </select>
-    <h5>Number of Bikes: <%= Station.least_available %></h5>
+    <h3>Highest/Lowest/Average Rides by Wind Speed Here</h3>
   </div>
 
   <div class="col-md-6">
-    <h3>Newest Station</h3>
-    <h4><%= (Station.most_recent_install_station)[0].name %></h4>
+    <h3>Highest/Lowest/Average Rides by Visibility Here</h3>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="col-md-6">
+    <h3>Highest Rides by Day Here</h3>
    </div>
 
     <div class="col-md-6">
-      <h3>Oldest Station</h3>
-      <h4> <% (Station.oldest_installed_station).each  do |station| %>
-      <%= station.name + " " %>
-      <% end %></h4>
+      <h3>Lowest Rides by Day Here</h3>
     </div>
 
   </div>
