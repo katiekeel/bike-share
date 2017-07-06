@@ -4,160 +4,288 @@
   <div class="jumbotron container">
     <div class="row">
 
-    <div class="col-md-12">
-      <h3 class="">Average Ride Duration</h3>
-      <h4><%= Trip.average_duration_of_a_ride %></h4>
+      <div class="col-md-12">
+        <h3 class="">Average Ride Duration</h3>
+        <h4><%= Trip.average_duration_of_a_ride %></h4>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h3 class="card-text">Longest Ride</h3>
-      <h4><%= Trip.longest_duration_of_a_ride %></h4>
+    <br/><br/>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="card-text">Longest Ride</h3>
+        <h4><%= Trip.longest_duration_of_a_ride %></h4>
+      </div>
+
+      <div class="col-md-6">
+        <h3>Shortest Ride</h3>
+        <h4> <%= Trip.shortest_duration_of_a_ride %></h4>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h3>Shortest Ride</h3>
-      <h4> <%= Trip.shortest_duration_of_a_ride %></h4>
+    <br/><br/>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Stations With Most Rides Beginning @</h3>
+        <h4> <%= Trip.start_station_with_most_rides %></h4>
+      </div>
+
+      <div class="col-md-6">
+        <h3>Stations With Most Rides Ending @</h3>
+        <h4> <%= Trip.end_station_with_most_rides %></h4>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h3>Stations With Most Rides Beginning @</h3>
-      <h4> <%= Trip.start_station_with_most_rides %></h4>
+    <br/><br/>
+
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <h3>Monthly Breakdown</h3>
+
+        <table class="table">
+
+        <thead>
+          <th>Year</th>
+          <th>August</th>
+          <th>September</th>
+          <th>October</th>
+          <th>November</th>
+          <th>December</th>
+          <th>January</th>
+          <th>February</th>
+          <th>March</th>
+          <th>April</th>
+          <th>May</th>
+          <th>June</th>
+          <th>July</th>
+        </thead>
+
+          <tbody>
+            <tr>
+              <th scope="row"> 2013 </th>
+                <% Trip.monthly_subtotal_of_trips_per_year.each.with_index do |month, index| %>
+                  <% if month[0].to_date.strftime("%Y") == "2013" %>
+                    <% if month[0].to_date.strftime("%m") == "08"  %>
+                                    <td><%= month[1] %></td>
+
+                                  <% end %>
+                    <% if month[0].to_date.strftime("%m") == "09" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "10"%>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+                    <% if month[0].to_date.strftime("%m") == "11" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "12" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "01" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "02" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "03" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "04" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "05" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "06" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "07" %>
+                                      <td><%= month[1] %></td>
+                                    <% end %>
+
+                  <% end %>
+                  <% end %>
+              </tr>
+
+              <tr>
+                <th scope="row">2014</th>
+                <% Trip.monthly_subtotal_of_trips_per_year.each.with_index do |month, index| %>
+                  <% if month[0].to_date.strftime("%Y") == "2014" %>
+                    <% if month[0].to_date.strftime("%m") == "08"  %>
+                                    <td><%= month[1] %></td>
+
+                                  <% end %>
+                    <% if month[0].to_date.strftime("%m") == "09" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "10"%>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+                    <% if month[0].to_date.strftime("%m") == "11" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "12" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "01" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "02" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "03" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "04" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "05" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "06" %>
+                                      <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% if month[0].to_date.strftime("%m") == "07" %>
+                                      <td><%= month[1] %></td>
+                                    <% end %>
+
+                  <% end %>
+                  <% end %>
+                </tr>
+
+                <tr>
+                  <th scope="row">2015</th>
+                  <% Trip.monthly_subtotal_of_trips_per_year.each.with_index do |month, index| %>
+                    <% if month[0].to_date.strftime("%Y") == "2015" %>
+                      <% if month[0].to_date.strftime("%m") == "08"  %>
+                                      <td><%= month[1] %></td>
+
+                                    <% end %>
+                      <% if month[0].to_date.strftime("%m") == "09" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "10"%>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+                      <% if month[0].to_date.strftime("%m") == "11" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "12" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "01" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "02" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "03" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "04" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "05" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "06" %>
+                                        <td><%= month[1] %></td>
+                                        <% end %>
+
+                      <% if month[0].to_date.strftime("%m") == "07" %>
+                                        <td><%= month[1] %></td>
+                                      <% end %>
+
+                    <% end %>
+                    <% end %>
+                </tr>
+          </tbody>
+      </table>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h3>Stations With Most Rides Ending @</h3>
-      <h4> <%= Trip.end_station_with_most_rides %></h4>
+    <br/><br/>
+
+
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Most Ridden Bike</h3>
+        <h4><%= Trip.most_ridden_bike %></h4>
+        <h4><%= Trip.total_rides_for_most_ridden_bike %></h4>
+       </div>
+
+       <div class="col-md-6">
+         <h3>Least Ridden Bike</h3>
+         <h4><%= Trip.least_ridden_bike %></h4>
+         <h4><%= Trip.total_rides_for_least_ridden_bike %></h4>
+        </div>
     </div>
 
-  <div class="col-md-12">
+    <br/><br/>
 
-    <h4>Monthly Breakdown</h4>
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Highest Number of Trips</h3>
+        <h4>Date <%= (Trip.date_with_most_trips).to_date %></h4>
+        <h4>Number of Trips <%= Trip.number_of_trips_on_day_with_most_trips %></h4>
+      </div>
 
-    <table class="table">
-
-    <thead>
-      <th>August</th>
-      <th>September</th>
-      <th>October</th>
-      <th>November</th>
-      <th>December</th>
-      <th>January</th>
-      <th>February</th>
-      <th>March</th>
-      <th>April</th>
-      <th>May</th>
-      <th>June</th>
-      <th>July</th>
-      <tr>2013</tr>
-      <tr>2014</tr>
-      <tr>2015</tr>
-    </thead>
-
-      <tbody>
-      <% Trip.monthly_subtotal_of_trips_per_year.each.with_index do |month, index| %>
-        <tr>
-          <th scope="row"><% if month[0].to_date.strftime("%m") == "08"  %>
-                            <%= month[1] %>
-                            <%= month[0].to_date.strftime("%Y") %>
-                          <% end %>
-          </th>
-            <td><% if month[0].to_date.strftime("%m") == "09" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "10"%>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "11" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "12" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "01" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "02" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "03" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "04" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "05" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "06" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                              <% end %>
-            </td>
-            <td><% if month[0].to_date.strftime("%m") == "07" %>
-                              <%= month[1] %>
-                              <%= month[0].to_date.strftime("%Y") %>
-                            <% end %>
-            </td>
-          <% end %>
-      </tbody>
-  </table>
-  </div>
-
-  <div class="col-md-6">
-    <h3>Most Ridden Bike</h3>
-    <h4><%= Trip.most_ridden_bike %></h4>
-    <h4><%= Trip.total_rides_for_most_ridden_bike %></h4>
-   </div>
-
-   <div class="col-md-6">
-     <h3>Least Ridden Bike</h3>
-     <h4><%= Trip.least_ridden_bike %></h4>
-     <h4><%= Trip.total_rides_for_least_ridden_bike %></h4>
+      <div class="col-md-6">
+        <h3>Lowest Number of Trips</h3>
+        <h4>Date <%= ((Trip.date_with_least_trips).to_date) %></h4>
+        <h4>Number of Trips <%= Trip.number_of_trips_on_day_with_least_trips %></h4>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h3>Highest Number of Trips</h3>
-      <h4>Date <%= (Trip.date_with_most_trips).to_date %></h4>
-      <h4>Number of Trips <%= Trip.number_of_trips_on_day_with_most_trips %></h4>
-    </div>
+    <br/><br/>
 
-    <div class="col-md-6">
-      <h3>Lowest Number of Trips</h3>
-      <h4>Date <%= ((Trip.date_with_least_trips).to_date) %></h4>
-      <h4>Number of Trips <%= Trip.number_of_trips_on_day_with_least_trips %></h4>
-    </div>
 
-    <div class="col-md-4">
-      <h3>Customers</h3>
-      <h4><%= Subscription.number_of_customers %></h4>
-    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Customers</h3>
+        <h4><%= Subscription.number_of_customers %></h4>
+      </div>
 
-    <div class="col-md-4">
-      <h3>Subscribers</h3>
-      <h4><%= Subscription.number_of_subscribers %></h4>
-    </div>
+      <div class="col-md-4">
+        <h3>Subscribers</h3>
+        <h4><%= Subscription.number_of_subscribers %></h4>
+      </div>
 
-    <div class="col-md-4">
-      <h3>Percentage of Subscribers</h3>
-      <h4><%= Subscription.percentage_of_subscribers %></h4>
+      <div class="col-md-4">
+        <h3>Percentage of Subscribers</h3>
+        <h4><%= Subscription.percentage_of_subscribers %></h4>
+      </div>
     </div>
 
   </div>
