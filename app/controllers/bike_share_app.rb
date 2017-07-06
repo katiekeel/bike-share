@@ -127,7 +127,7 @@ class BikeShareApp < Sinatra::Base
     files
     params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
     @condition = Condition.update(id.to_i, params[:condition])
-    redirect "/conditions/#{id}"
+    redirect "/conditions/#{@condition.id}"
   end
 
   post '/conditions' do

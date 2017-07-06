@@ -4,7 +4,7 @@
     <title> Weather Condition Day <%= @condition.id %> </title>
   </head>
 
-  <h1><%= @condition.date_id %></h1>
+  <h1><%= BikeDate.find(@condition.date_id).date.strftime("%B %d, %Y") %></h1>
 
   <body>
     <div class="container">

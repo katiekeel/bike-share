@@ -24,7 +24,7 @@
     <% @conditions.each do |condition| %>
       <tr>
         <th scope="row"><%= condition.id %></th>
-          <td><a href="/conditions/<%= condition.id %>"><%= condition.date_id %></a></td>
+          <td><a href="/conditions/<%= condition.id %>"><%= BikeDate.find(condition.date_id).date.strftime("%B %d, %Y") %></a></td>
           <td><%= condition.max_temp %></td>
           <td><%= condition.min_temp %></td>
           <td><%= condition.mean_temp %></td>

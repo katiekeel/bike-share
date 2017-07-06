@@ -39,7 +39,7 @@ RSpec.describe "User visits trip dashboard and" do
   it "sees average duration of a ride" do
     visit '/trips-dashboard'
 
-    expect(page).to have_content("Average duration of a ride")
+    expect(page).to have_content("Average Ride Duration")
   end
 
   it "sees longest ride" do
@@ -69,7 +69,7 @@ RSpec.describe "User visits trip dashboard and" do
   it "sees monthly breakdown of rides" do
     visit '/trips-dashboard'
 
-    expect(page).to have_content("Monthly breakdown")
+    expect(page).to have_content("Monthly Breakdown")
   end
 
   it "sees most ridden bike" do
@@ -87,18 +87,18 @@ RSpec.describe "User visits trip dashboard and" do
   it "sees user subscription type and breakdown" do
     visit '/trips-dashboard'
 
-    expect(page).to have_content("Subscription")
+    expect(page).to have_content("Subscribers")
   end
 
   it "sees date with highest number of rides" do
     visit '/trips-dashboard'
 
-    expect(page).to have_content("Highest Number of Rides")
+    expect(page).to have_content("Highest Number of Trips")
   end
 
   it "sees date with lowest number of rides" do
     visit '/trips-dashboard'
 
-    expect(page).to have_content("Lowest Number of Rides")
+    expect(page).to have_content("Lowest Number of Trips")
   end
 end
