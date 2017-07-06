@@ -97,7 +97,7 @@ class Trip < ActiveRecord::Base
   def self.most_frequent_destination_from(station_id)
     all_ends = Trip.where(start_station: station_id).map { |station| station.end_station}
     Station.find(all_ends.max_by{|set| all_ends.count(set)}).name
-    end
+  end
 
   def self.most_frequent_origin_for_rides_ending_at(station_id)
     all_starts = Trip.where(end_station: station_id).map { |station| station.start_station}
@@ -105,7 +105,7 @@ class Trip < ActiveRecord::Base
   end
 
   def self.date_for_highest_number_of_trips_from(station_id)
-      dates =Trip.where(start_station: station_id).map { |trip| trip.start_date}
+      dates = Trip.where(start_station: station_id).map { |trip| trip.start_date}
       BikeDate.find(dates.max_by{|set| dates.count(set)}).date
   end
 

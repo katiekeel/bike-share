@@ -15,25 +15,25 @@ ActiveRecord::Schema.define(version: 15) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bike_dates", force: :cascade do |t|
+  create_table "bike_dates", id: :serial, force: :cascade do |t|
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "bikes", force: :cascade do |t|
-    t.integer  "bike"
+  create_table "bikes", id: :serial, force: :cascade do |t|
+    t.integer "bike"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "cities", force: :cascade do |t|
-    t.string   "city"
+  create_table "cities", id: :serial, force: :cascade do |t|
+    t.string "city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "conditions", force: :cascade do |t|
+  create_table "conditions", id: :serial, force: :cascade do |t|
     t.integer "date_id"
     t.integer "max_temp"
     t.integer "mean_temp"
@@ -44,37 +44,37 @@ ActiveRecord::Schema.define(version: 15) do
     t.integer "precipitation"
   end
 
-  create_table "stations", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "dock_count"
-    t.integer  "city_id"
-    t.string   "installation_date"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "station_id"
+  create_table "stations", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "dock_count"
+    t.integer "city_id"
+    t.string "installation_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "station_id"
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "subscription_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+  create_table "subscriptions", id: :serial, force: :cascade do |t|
+    t.string "subscription_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "trips", force: :cascade do |t|
-    t.integer  "duration"
-    t.integer  "start_date"
-    t.integer  "start_station"
-    t.integer  "end_date"
-    t.integer  "end_station"
-    t.integer  "bike_id"
-    t.integer  "subscription_type"
-    t.integer  "zip_code"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+  create_table "trips", id: :serial, force: :cascade do |t|
+    t.integer "duration"
+    t.integer "start_date"
+    t.integer "start_station"
+    t.integer "end_date"
+    t.integer "end_station"
+    t.integer "bike_id"
+    t.integer "subscription_type"
+    t.integer "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "zip_codes", force: :cascade do |t|
-    t.bigint   "zip_code"
+  create_table "zip_codes", id: :serial, force: :cascade do |t|
+    t.bigint "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,6 +1,6 @@
-RSpec.describe "User visits individual station" do
-  it "sees individual station" do
+RSpec.describe "User visits trip dashboard and" do
 
+  before :each do
     @city_1 = City.create(city: "San Jose")
     @city_2 = City.create(city: "Redwood")
 
@@ -14,7 +14,6 @@ RSpec.describe "User visits individual station" do
 
     @bike_id = Bike.create(bike: 1)
     @bike_2 = Bike.create(bike: 2)
-
 
     @subscription_type = Subscription.create(subscription_type: "Customer")
 
@@ -35,23 +34,71 @@ RSpec.describe "User visits individual station" do
     @trip_4 = Trip.create(duration: 300, start_date: @start_date.id, start_station: @start_station.id,
     end_station: @end_station.id, end_date: @end_date.id,
     bike_id: @bike_id.id, subscription_type: @subscription_type.id, zip_code: @zip_code.id)
+  end
 
+  it "sees average duration of a ride" do
+    visit '/trips-dashboard'
 
-    visit "/stations/#{@start_station.id}"
+    expect(page).to have_content("Average duration of a ride")
+  end
 
-    expect(current_path).to eq("/stations/#{@start_station.id}")
-    expect(page).to have_content("#{@start_station.name}")
-    expect(page).to have_content("#{@start_station.dock_count}")
-    expect(page).to have_content("#{@city_1.city}")
-    expect(page).to have_content("#{@start_station.installation_date}")
+  it "sees longest ride" do
+    visit '/trips-dashboard'
 
-    expect(page).to have_content("Number of Rides Starting")
-    expect(page).to have_content("Number of Rides Ending")
-    expect(page).to have_content("Frequent Destination from this Station")
-    expect(page).to have_content("Frequent Origination to this Station")
+    expect(page).to have_content("Longest Ride")
+  end
 
-    expect(page).to have_content("Highest Number of Trips")
-    expect(page).to have_content("Frequently Used ZipCode")
-    expect(page).to have_content("Frequently Used Bike ")
+  it "sees shortest ride" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Shortest Ride")
+  end
+
+  it "sees the station that had the most beginning rides" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Stations With Most Rides Beginning @")
+  end
+
+  it "sees the station that most rides" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Stations With Most Rides Ending @")
+  end
+
+  it "sees monthly breakdown of rides" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Monthly breakdown")
+  end
+
+  it "sees most ridden bike" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Most Ridden Bike")
+  end
+
+  it "sees most least ridden bike" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Least Ridden Bike")
+  end
+
+  it "sees user subscription type and breakdown" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Subscription")
+  end
+
+  it "sees date with highest number of rides" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Highest Number of Rides")
+  end
+
+  it "sees date with lowest number of rides" do
+    visit '/trips-dashboard'
+
+    expect(page).to have_content("Lowest Number of Rides")
   end
 end

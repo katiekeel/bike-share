@@ -29,6 +29,41 @@
               <td><%= @station.installation_date %></td>
         </tbody>
       </table>
+
+      <table class="table">
+
+        <thead>
+          <th>Date with Highest Number of Trips</th>
+          <th>Frequently Used ZipCode for users from this Station</th>
+          <th>Frequently Used Bike from this Station</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row>"><%= Trip.date_for_highest_number_of_trips_from(@station.id) %></th>
+            <td><%= Trip.frequently_used_zip_code_for_users_from(@station.id) %></td>
+            <td><%= Trip.frequently_used_bike_id_from(@station.id) %></td>
+          </tbody>
+        </table>
+        
+      <table class="table">
+
+        <thead>
+          <th>Number of Rides Starting at this Station</th>
+          <th>Number of Rides Ending at this Station</th>
+          <th>Frequent Destination from this Station</th>
+          <th>Frequent Origination to this Station</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row>"><%= Trip.trips_from_starting(@station.id) %></th>
+              <td><%= Trip.trips_from_ending(@station.id) %></td>
+              <td><%= Trip.most_frequent_destination_from(@station.id) %></td>
+              <td><%= Trip.most_frequent_origin_for_rides_ending_at(@station.id) %></td>
+        </tbody>
+      </table>
+
     </div>
   </body>
 </html>
