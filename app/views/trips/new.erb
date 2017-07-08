@@ -17,7 +17,7 @@
       <label for="">Start Station:</label>
         <p><select name="trip[start_station]">
           <% @stations.each do |station| %>
-            <option value="<%= station.station_id %>"><%= station.name %></option>
+            <option value="<%= station.id %>"><%= station.name %></option>
           <% end %>
         </select></p>
 
@@ -27,7 +27,7 @@
       <label for="">End Station:</label>
         <p><select name="trip[end_station]">
           <% @stations.each do |station| %>
-            <option value="<%= station.station_id %>"><%= station.name %></option>
+            <option value="<%= station.id %>"><%= station.name %></option>
             <% end %>
           </select></p>
 

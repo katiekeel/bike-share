@@ -2,33 +2,52 @@
 
 
 <form class="" action="/trips/<%= @trip.id %>" method="post">
-
   <input type="hidden" name="_method" value="PUT">
 
-  <label for="name">Duration:</label>
-  <input type="text" name="trip[duration]" value="<%= @trip.duration %>"></br>
+  <label for="">Duration:</label>
+    <p><input type="integer" name="trip[duration]" value=""></p>
 
-  <label for="Trip Start Date">Trip Start Date:</label>
-  <input type="date" name="trip[start_date]" value="<%= @trip.start_date %>"></br>
+  <label for="">Start Date:</label>
+    <p><input type="datetime-local" name="trip[start_date]" value=""></p>
 
-  <label for="Start Station">Start Station:</label>
-  <input type="text" name="trip[start_station]" value="<%= @trip.start_station %>"></br>
+  <label for="">Start Station:</label>
+    <p><select name="trip[start_station]">
+      <% @stations.each do |station| %>
+        <option value="<%= station.id %>"><%= station.name %></option>
+      <% end %>
+    </select></p>
 
-  <label for="installation date">Trip End Date:</label>
-  <input type="date" name="trip[end_date]" value="<%= @trip.end_date %>"></br>
+  <label for="">End Date:</label>
+    <p><input type="datetime-local" name="trip[end_date]" value=""></p>
 
-  <label for="installation date">End Station:</label>
-  <input type="text" name="trip[end_station]" value="<%= @trip.end_station %>"></br>
+  <label for="">End Station:</label>
+    <p><select name="trip[end_station]">
+      <% @stations.each do |station| %>
+        <option value="<%= station.id %>"><%= station.name %></option>
+        <% end %>
+      </select></p>
 
-  <label for="bike id">Bike ID:</label>
-  <input type="integer" name="trip[bike_id]" value="<%= @trip.bike_id %>"></br>
+  <label for="">Bike ID:</label>
+    <p><select name="trip[bike_id]">
+      <% Bike.all.each do |bike| %>
+      <option value="<%= bike.id %>"><%= bike.bike %></option>
+      <% end %>
+    </select></p>
 
-  <label for="subscription type">Subscription Type:</label>
-  <input type="text" name="trip[subscription_type]" value="<%= @trip.subscription_type %>"></br>
 
-  <label for="zipe code">Zip Code:</label>
-  <input type="integer" name="trip[zip_code]" value="<%= @trip.zip_code%>"></br>
+  <label for="">Subscription Type:</label>
+    <p><select name="trip[subscription_type]">
+      <% Subscription.all.each do |subscription| %>
+        <option value="<%= subscription.id %>"><%= subscription.subscription_type %></option>
+        <% end %>
+      </select></p>
 
-  <button value="submit" name="submit">Submit</button>
+  <label for="">Zip Code:</label>
+    <p><select name="trip[zip_code]">
+      <% ZipCode.all.each do |zipcode| %>
+      <option value="<%= zipcode.id %>"><%= zipcode.zip_code %></option>
+      <% end %>
+    </select></p>
 
+  <p><button value="submit" name="submit">Submit</p>
 </form>

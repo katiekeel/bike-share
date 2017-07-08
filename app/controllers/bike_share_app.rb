@@ -76,8 +76,16 @@ class BikeShareApp < Sinatra::Base
 
   put '/trips/:id' do |id|
     files
-    @trip = Trip.update(id.to_i, params[:trip])
-    redirect "/trips/#{id}"
+
+    params[:trip][:start_date] = BikeDate.form_date_create(params[:trip][:start_date])
+    params[:trip][:end_date] = BikeDate.form_date_create(params[:trip][:end_date])
+
+    if params[:trip][:duration] == ""
+      erb :"/stations/error"
+    else
+      @trip = Trip.update(id.to_i, params[:trip])
+      redirect "/trips/#{id}"
+    end
   end
 
   post '/stations' do
@@ -157,11 +165,8 @@ class BikeShareApp < Sinatra::Base
   post '/trips' do
     files
 
-
     params[:trip][:start_date] = BikeDate.form_date_create(params[:trip][:start_date])
-    params[:trip][:start_station] = Station.find_by(station_id: params[:trip][:start_station]).id
     params[:trip][:end_date] = BikeDate.form_date_create(params[:trip][:end_date])
-    params[:trip][:end_station] = Station.find_by(station_id: params[:trip][:end_station]).id
 
     if params[:trip][:duration] == ""
       erb :"stations/error"

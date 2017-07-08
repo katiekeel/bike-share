@@ -22,8 +22,6 @@ RSpec.describe "User visits Trips page and" do
   it "clicks first trip id link" do
     visit '/trips'
 
-    save_and_open_page
-
     click_link("#{@trip.id}")
 
     expect(current_path).to eq("/trips/#{@trip.id}")

@@ -119,7 +119,7 @@ class Trip < ActiveRecord::Base
     zips =Trip.where(start_station: station_id).map { |trip| trip.zip_code}
     return "No one has used this station" if zips.empty?
     ZipCode.find(zips.max_by{|set| zips.count(set)}).zip_code
-    rescue ActiveRecord::RecordNotFound 
+    rescue ActiveRecord::RecordNotFound
   end
 
   def self.frequently_used_bike_id_from(station_id)
