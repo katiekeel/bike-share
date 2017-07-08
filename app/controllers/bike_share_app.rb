@@ -144,7 +144,7 @@ class BikeShareApp < Sinatra::Base
   post '/conditions' do
     files
     params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
-    if params[:condition][:date_id] == "" || params[:condition][:mean_temp] == ""
+    if params[:condition][:min_temp] == ""
       erb :"stations/error"
     else
       @weather = Condition.create(params[:condition])

@@ -1,26 +1,46 @@
-RSpec.describe "User creates a new weather day and" do
+RSpec.describe "User creates a new weather condition" do
 
-  it "fills in form with date, max temp, mean temp, min temp, mean humidity, mean visibility, mean wind speed, and precipitation" do
-    visit '/conditions/new'
-
-    expect(page).to have_content("Date")
-    expect(page).to have_content("Max Temp")
-    expect(page).to have_content("Min Temp")
-    expect(page).to have_content("Mean Temp")
-    expect(page).to have_content("Mean Humidity")
-    expect(page).to have_content("Mean Visibility")
-    expect(page).to have_content("Mean Wind Speed")
-    expect(page).to have_content("Precipitation")
+  before :each do
+    @date = BikeDate.bike_date_create("8/29/2013 14:14")
   end
 
-  it "doesn't fill in all fields and gets an error message" do
+  it "with valid inputs" do
     visit '/conditions/new'
+
     fill_in "condition[date_id]", with: "2018-04-19"
-    fill_in "condition[max_temp]", with: 75.0
-    fill_in "condition[min_temp]", with: 71.0
+    fill_in "condition[max_temp]", with: 1
+    fill_in "condition[min_temp]", with: 1
+    fill_in "condition[mean_temp]", with: 1
+    fill_in "condition[mean_humidity]", with: 1
+    fill_in "condition[mean_visibility]", with: 1
+    fill_in "condition[mean_wind_speed]", with: 1
+    fill_in "condition[precipitation]", with: 1
 
-    find_button("Create New Weather Condition").click
+    click_button("Create New Weather Condition")
 
+    condition = Condition.last
+
+    expect(current_path).to eq("/conditions/#{condition.id}")
+    expect(page).to have_content("#{condition.max_temp}")
+  end
+
+
+  it "with invalid inputs" do
+    visit '/conditions/new'
+
+    visit '/conditions/new'
+
+    fill_in "condition[date_id]", with: "2018-04-19"
+    fill_in "condition[min_temp]", with: 1
+    fill_in "condition[mean_temp]", with: 1
+    fill_in "condition[mean_humidity]", with: 1
+    fill_in "condition[mean_visibility]", with: 1
+    fill_in "condition[mean_wind_speed]", with: 1
+    fill_in "condition[precipitation]", with: 1
+
+    click_button("Create New Weather Condition")
+
+    expect(current_path).to eq("/conditions")
     expect(page).to have_content("ERROR")
   end
 end
