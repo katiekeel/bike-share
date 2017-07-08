@@ -69,6 +69,7 @@ class BikeShareApp < Sinatra::Base
 
   put '/stations/:id' do |id|
     files
+    params[:station][:city_id] = City.find_by(city: params[:station][:city_id]).id
     @station = Station.update(id.to_i, params[:station])
     redirect "/stations/#{id}"
   end
@@ -126,7 +127,9 @@ class BikeShareApp < Sinatra::Base
   put '/conditions/:id' do |id|
     files
     params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
+
     @condition = Condition.update(id.to_i, params[:condition])
+
     redirect "/conditions/#{@condition.id}"
   end
 

@@ -12,7 +12,6 @@ RSpec.describe "User edits trip information" do
   end
 
   it "can edit a trip from '/trips'" do
-
     # visit '/trips'
     #
     # click_link("Edit")

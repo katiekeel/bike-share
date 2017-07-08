@@ -16,27 +16,23 @@
 
   <div class="col-md-6">
     <h3>Stations With Most Bikes</h3>
-    <select class="" name="stations[name]">
-      <% Station.stations_with_most_bikes_available.each do |station| %>
-      <option href="/stations/<%= station.id %>" value=<%= station.id %>><%= station.name %></option>
-        <% end %>
-      </select>
-      <h5>Number of Bikes: <%= Station.most_available %></h5>
+    <h4>Number of Bikes: <%= Station.most_available %></h4>
+      <p><% Station.stations_with_most_bikes_available.each do |station| %>
+        <h5><%= station.name %></h5>
+        <% end %></p>
     </div>
 
   <div class="col-md-6">
     <h3>Stations With Least Bikes</h3>
-    <select class="" name="stations[name]">
-      <% Station.stations_with_least_bikes_available.each do |station| %>
-        <option value=<%= station.id %>><%= station.name %></option>
-      <% end %>
-    </select>
-    <h5>Number of Bikes: <%= Station.least_available %></h5>
+      <h4>Number of Bikes: <%= Station.least_available %></h4>
+      <p><% Station.stations_with_least_bikes_available.each do |station| %>
+        <h5><%= station.name %></h5>
+      <% end %></p>
   </div>
 
   <div class="col-md-6">
     <h3>Newest Station</h3>
-    <h4><%= (Station.most_recent_install_station).name %></h4>
+    <h4><%= Station.most_recent_install_station.first.name %></h4>
    </div>
 
     <div class="col-md-6">

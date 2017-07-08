@@ -1,6 +1,6 @@
 RSpec.describe "User creates a new weather day and" do
 
-  it "sees a form with date, max temp, mean temp, min temp, mean humidity, mean visibility, mean wind speed, and precipitation" do
+  it "fills in form with date, max temp, mean temp, min temp, mean humidity, mean visibility, mean wind speed, and precipitation" do
     visit '/conditions/new'
 
     expect(page).to have_content("Date")

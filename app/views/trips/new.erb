@@ -39,7 +39,7 @@
       <label for="">Subscription Type:</label>
         <p><select name="trip[subscription_type]">
           <% Subscription.all.each do |subscription| %>
-            <option value="<% subscription.id %>"><%= subscription.name %></option>
+            <option value="<%= subscription.id %>"><%= subscription.name %></option>
             <% end %>
           </select></p>
 
