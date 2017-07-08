@@ -1,4 +1,4 @@
-RSpec.describe "User edits a weather day" do
+RSpec.describe "User updates a weather condition" do
 
   before :each do
     @weather_date = BikeDate.create(date: "2017-04-19")
@@ -6,7 +6,7 @@ RSpec.describe "User edits a weather day" do
     puts @weather_day.id
   end
 
-  it "can update a weather day from /conditions" do
+  it "from /conditions" do
     visit "/conditions"
 
     first(:link, "Edit Weather").click
@@ -28,7 +28,7 @@ RSpec.describe "User edits a weather day" do
     expect(page).to have_content("#{@weather_date.id}")
   end
 
-  it "can update a weather day from Edit URL" do
+  it "from /conditions/:id/edit" do
 
     visit "/conditions/#{@weather_day.id}/edit"
 
