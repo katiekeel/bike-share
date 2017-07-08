@@ -6,7 +6,11 @@
 
   <h1><%= @station.name %></h1>
 
-  <p><a href="/">Home</a> | <a href="/stations">All Stations</a> | <a href="/trips">All Trips</a> | <a href="#">Edit</a> | <a href="#">Delete</a></p>
+  <p><h3><a href="/stations/<%= @station.id %>/edit">Edit</a></h3><br/>
+    <form action="/stations/<%= @station.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE" />
+    <input type="submit" value="Delete" />
+    </form></p>
 
   <body>
 
@@ -40,12 +44,12 @@
 
         <tbody>
           <tr>
-            <th scope="row>"><%= Trip.date_for_highest_number_of_trips_from(@station.id) %></th>
-            <td><%= Trip.frequently_used_zip_code_for_users_from(@station.id) %></td>
-            <td><%= Trip.frequently_used_bike_id_from(@station.id) %></td>
+            <th scope="row>"><%= Trip.date_for_highest_number_of_trips_from(@station.station_id) %></th>
+            <td><%= Trip.frequently_used_zip_code_for_users_from(@station.station_id) %></td>
+            <td><%= Trip.frequently_used_bike_id_from(@station.station_id) %></td>
           </tbody>
         </table>
-        
+
       <table class="table">
 
         <thead>
@@ -57,10 +61,10 @@
 
         <tbody>
           <tr>
-            <th scope="row>"><%= Trip.trips_from_starting(@station.id) %></th>
-              <td><%= Trip.trips_from_ending(@station.id) %></td>
-              <td><%= Trip.most_frequent_destination_from(@station.id) %></td>
-              <td><%= Trip.most_frequent_origin_for_rides_ending_at(@station.id) %></td>
+            <th scope="row>"><%= Trip.trips_from_starting(@station.station_id) %></th>
+              <td><%= Trip.trips_from_ending(@station.station_id) %></td>
+              <td><%= Trip.most_frequent_destination_from(@station.station_id) %></td>
+              <td><%= Trip.most_frequent_origin_for_rides_ending_at(@station.station_id) %></td>
         </tbody>
       </table>
 

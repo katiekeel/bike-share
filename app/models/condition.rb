@@ -9,7 +9,6 @@ class Condition < ActiveRecord::Base
   validates :mean_wind_speed, presence: true
   validates :precipitation, presence: true
 
-
   def self.temperature_chunking(degree_one, degree_two)
     Condition.where(max_temp: (degree_one)..(degree_two))
   end

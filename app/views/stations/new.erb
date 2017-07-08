@@ -5,14 +5,14 @@
   </head>
   <body>
     <h1>Create New Station</h1>
-    <p><a href="/stations">All Stations</a> | <a href="/trips">All Trips</a> | <a href="/">Home</a></p>
+
     <form class="" action="/stations" method="post">
       <label for="">Name:</label>
       <p><input type="textfield" name="station[name]" value=""></p>
       <label for="">City</label>
-      <p><select name="city">
+      <p><select name="station[city_id]">
         <% @city.each do |city| %>
-          <option value="<% city.id %>"><%= city.city %></option>
+          <option value="<%= city.id %>" label="<%= city.city %>"><%= city.city %></option>
         <% end %>
       </select></p>
 

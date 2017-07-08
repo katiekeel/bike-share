@@ -4,10 +4,17 @@
     <title> Trip <%= @trip.id %> </title>
   </head>
 
-  <h1><%= @trip.name %></h1>
+  <h1>Trip #<%= @trip.id %></h1>
+
+  <p><h3><a href="/trips/<%= @trip.id %>/edit">Edit</a></h3><br/>
+    <form action="/trips/<%= @trip.id %>" method="post">
+    <input type="hidden" name="_method" value="DELETE" />
+    <input type="submit" value="Delete" />
+    </form></p>
+
 
   <body>
-    <h3>Duration: <%= @trip.duration %></h3>
+    <h3>Duration: <%= @trip.duration %> seconds</h3><br/><br/>
     <div class="container">
 
       <table class="table">
@@ -22,12 +29,11 @@
 
         <tbody>
           <tr>
-            <th scope="row>"><%= (Stations.find(@trip.start_station)).name %></th>
-              <td><%= (Stations.find(@trip.end_station)).name %></td>
-              <td><%= (Dates.find(@trip.start_date)).date %></td>
-              <td><%= (Dates.find(@trip.end_date)).date %></td>
-              <td><%= (Dates.find(@trip.end_date)).date %></td>
-              <td><%= (Trip.bike_id) %></td>
+            <th scope="row>"><%= (Station.find(@trip.start_station)).name %></th>
+              <td><%= (Station.find(@trip.end_station)).name %></td>
+              <td><%= (BikeDate.find(@trip.start_date)).date %></td>
+              <td><%= (BikeDate.find(@trip.end_date)).date %></td>
+              <td><%= (@trip.bike_id) %></td>
         </tbody>
       </table>
     </div>

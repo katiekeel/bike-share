@@ -7,7 +7,15 @@ RSpec.describe Condition do
   describe "Validations" do
     it "is invalid without a date_id" do
 
-      weather = Condition.create(max_temp: 77, mean_temp: 78, min_temp: 65, mean_humidity: 35, mean_visibility: 10, mean_wind_speed: 22, precipitation: 12)
+      weather = Condition.create(
+        max_temp: 77,
+        mean_temp: 78,
+        min_temp: 65,
+        mean_humidity: 35,
+        mean_visibility: 10,
+        mean_wind_speed: 22,
+        precipitation: 12
+      )
 
       expect(weather).to_not be_valid
     end

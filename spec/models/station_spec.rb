@@ -93,12 +93,12 @@ RSpec.describe Station do
         station = Station.create(name: "Of",dock_count: 3, city_id: 1, installation_date: "12-12-12")
         station = Station.create(name: "Design",dock_count: 4, city_id: 1, installation_date: "12-12-12")
         station = Station.create(name: "Software",dock_count: 3, city_id: 1, installation_date: "12-12-12")
-        most = Station.stations_with_least_bikes_available
-        length = most.length
+        result = Station.stations_with_least_bikes_available
+        length = result.length
 
         expect(length).to eq(2)
-        expect(most[0].name).to eq("Of")
-        expect(most[1].name).to eq("Software")
+        expect(result.first.name).to eq("Of")
+        expect(result.last.name).to eq("Software")
       end
 
       it "shows the station that was most recently installed" do

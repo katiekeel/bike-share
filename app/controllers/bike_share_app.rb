@@ -69,14 +69,23 @@ class BikeShareApp < Sinatra::Base
 
   put '/stations/:id' do |id|
     files
+    params[:station][:city_id] = City.find_by(city: params[:station][:city_id]).id
     @station = Station.update(id.to_i, params[:station])
     redirect "/stations/#{id}"
   end
 
   put '/trips/:id' do |id|
     files
-    @trip = Trip.update(id.to_i, params[:trip])
-    redirect "/trips/#{id}"
+
+    params[:trip][:start_date] = BikeDate.form_date_create(params[:trip][:start_date])
+    params[:trip][:end_date] = BikeDate.form_date_create(params[:trip][:end_date])
+
+    if params[:trip][:duration] == ""
+      erb :"/stations/error"
+    else
+      @trip = Trip.update(id.to_i, params[:trip])
+      redirect "/trips/#{id}"
+    end
   end
 
   post '/stations' do
@@ -123,22 +132,23 @@ class BikeShareApp < Sinatra::Base
     erb :"conditions/edit"
   end
 
-  put '/conditions/:id' do |id|
-    files
-    params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
-    @condition = Condition.update(id.to_i, params[:condition])
-    redirect "/conditions/#{@condition.id}"
-  end
-
   post '/conditions' do
     files
     params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
-    if params[:condition][:date_id] == "" || params[:condition][:mean_temp] == ""
+    if params[:condition][:min_temp] == ""
       erb :"stations/error"
     else
       @weather = Condition.create(params[:condition])
       redirect "/conditions/#{@weather.id}"
     end
+  end
+
+  put '/conditions/:id' do |id|
+    files
+    params[:condition][:date_id] = BikeDate.find_or_create_by(date: params[:condition][:date_id]).id
+
+    @condition = Condition.update(id.to_i, params[:condition])
+    redirect "/conditions/#{@condition.id}"
   end
 
   delete '/conditions/:id' do |id|
@@ -149,6 +159,20 @@ class BikeShareApp < Sinatra::Base
   get '/weather-dashboard' do
     files
     erb :weather_dashboard
+  end
+
+  post '/trips' do
+    files
+
+    params[:trip][:start_date] = BikeDate.form_date_create(params[:trip][:start_date])
+    params[:trip][:end_date] = BikeDate.form_date_create(params[:trip][:end_date])
+
+    if params[:trip][:duration] == ""
+      erb :"stations/error"
+    else
+      @trip = Trip.create!(params[:trip])
+      redirect "/trips/#{@trip.id}"
+    end
   end
 
 end

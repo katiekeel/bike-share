@@ -9,45 +9,41 @@ RSpec.describe "User visits station dashboard and" do
   end
 
   it "sees total stations" do
-    # When I visit the station dashboard page
     visit '/stations-dashboard'
-    # I should see a total number of stations
-    expect(page).to have_content('Total Number of Stations')
+
+    expect(page).to have_content(Station.total_stations)
   end
 
   it "sees average bikes per station" do
-    # When I visit the station dashboard page
     visit '/stations-dashboard'
-    # I should see a total number of stations
-    expect(page).to have_content('Average Bikes Per Station')
+
+    expect(page).to have_content(Station.average_bikes_per_station.to_i)
   end
 
   it "sees Stations with most bikes" do
-    # When I visit the station dashboard page
     visit '/stations-dashboard'
-    # I should see a total number of stations
-    page.should have_content("Stations With Most Bikes")
+
+    expect(page).to have_content(Station.most_available)
+    expect(page).to have_content(Station.stations_with_most_bikes_available.first.name)
   end
 
   it "sees stations with least bikes" do
-    # When I visit the station dashboard page
     visit '/stations-dashboard'
-    # I should see a total number of stations
-    expect(page).to have_content('Stations With Least Bikes')
+
+    expect(page).to have_content(Station.least_available)
+    expect(page).to have_content(Station.stations_with_least_bikes_available.first.name)
   end
 
   it "sees Most recent installed stations" do
-    # When I visit the station dashboard page
     visit '/stations-dashboard'
-    # I should see a total number of stations
-    expect(page).to have_content('Newest Station')
+
+    expect(page).to have_content(Station.most_recent_install_station.first.name)
   end
 
   it "sees Oldest Station" do
-    # When I visit the station dashboard page
     visit '/stations-dashboard'
-    # I should see a total number of stations
-    expect(page).to have_content('Oldest Stations')
+
+    expect(page).to have_content(Station.oldest_installed_station.first.name)
   end
 
 end

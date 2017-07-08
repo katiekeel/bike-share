@@ -6,8 +6,6 @@
   <body>
     <h1>Create New Trip</h1>
 
-    <p><a href="/stations">All Stations</a> | <a href="/trips">All Trips</a> | <a href="/">Home</a></p>
-
     <form class="" action="/trips" method="post">
 
       <label for="">Duration:</label>
@@ -19,7 +17,7 @@
       <label for="">Start Station:</label>
         <p><select name="trip[start_station]">
           <% @stations.each do |station| %>
-            <option value="<% station.id %>"><%= station.name %></option>
+            <option value="<%= station.id %>"><%= station.name %></option>
           <% end %>
         </select></p>
 
@@ -29,22 +27,31 @@
       <label for="">End Station:</label>
         <p><select name="trip[end_station]">
           <% @stations.each do |station| %>
-            <option value="<% station.id %>"><%= station.name %></option>
+            <option value="<%= station.id %>"><%= station.name %></option>
             <% end %>
           </select></p>
 
       <label for="">Bike ID:</label>
-        <p><input type="integer" name="trip[bike_id]" value=""></p>
+        <p><select name="trip[bike_id]">
+          <% Bike.all.each do |bike| %>
+          <option value="<%= bike.id %>"><%= bike.bike %></option>
+          <% end %>
+        </select></p>
+
 
       <label for="">Subscription Type:</label>
         <p><select name="trip[subscription_type]">
           <% Subscription.all.each do |subscription| %>
-            <option value="<% subscription.id %>"><%= subscription.name %></option>
+            <option value="<%= subscription.id %>"><%= subscription.subscription_type %></option>
             <% end %>
           </select></p>
 
       <label for="">Zip Code:</label>
-        <p><input type="integer" name="trip[subscription_id]" value=""></p>
+        <p><select name="trip[zip_code]">
+          <% ZipCode.all.each do |zipcode| %>
+          <option value="<%= zipcode.id %>"><%= zipcode.zip_code %></option>
+          <% end %>
+        </select></p>
 
       <p><input type="submit" name="submit" value="Create New Trip" /></p>
     </form>
