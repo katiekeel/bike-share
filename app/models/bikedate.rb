@@ -1,5 +1,8 @@
 class BikeDate < ActiveRecord::Base
-  has_many :started_trips, class_name: "Trip", foreign_key: :start_date
+  # has_many :started_trips, class_name: "Trip", foreign_key: :start_date
+
+  belongs_to :trip
+  belongs_to :condition
 
   validates :date, presence: true
 

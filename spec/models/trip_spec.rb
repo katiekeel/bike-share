@@ -14,7 +14,6 @@ RSpec.describe Trip do
     @bike_id = Bike.create(bike: 1)
     @bike_2 = Bike.create(bike: 2)
 
-
     @subscription_type = Subscription.create(subscription_type: "Customer")
 
     @zip_code = ZipCode.create(zip_code: 99999)
@@ -34,7 +33,6 @@ RSpec.describe Trip do
     @trip_4 = Trip.create(duration: 300, start_date: @start_date.id, start_station: @start_station.id,
     end_station: @end_station.id, end_date: @end_date.id,
     bike_id: @bike_id.id, subscription_type: @subscription_type.id, zip_code: @zip_code.id)
-
   end
 
   describe "Validations" do
@@ -135,7 +133,7 @@ RSpec.describe Trip do
 
         expect(most_rides_ending).to eq(@end_station.name)
       end
-  
+
       it "shows most ridden bike" do
         most_ridden_bike = Trip.most_ridden_bike
 

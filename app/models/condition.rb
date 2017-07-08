@@ -1,5 +1,8 @@
 class Condition < ActiveRecord::Base
-  belongs_to :bikedate, :class_name => "BikeDate", :foreign_key => :date_id
+  has_many :bikedate
+  has_many :trips, through: :bikedate
+  # belongs_to :bikedate, :class_name => "BikeDate", :foreign_key => :date_id
+
   validates :date_id, presence: true
   validates :max_temp, presence: true
   validates :mean_temp, presence: true
@@ -27,3 +30,7 @@ class Condition < ActiveRecord::Base
   BikeDate.all.pluck(:id, :date).each {|date| date[1] = date[1].strftime('%Y%m%d')}.select{ |sell| sell[1] == "#{var}"}.inject(0) {|sum, obj| sum += Trip.where(start_date: obj[0]).count}
   end
 end
+
+
+
+# Trip.joins(:conditions).where(conditions: { start_date: date } )
