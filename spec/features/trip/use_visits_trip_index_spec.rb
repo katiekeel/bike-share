@@ -1,59 +1,53 @@
-RSpec.describe "User visits Trips page" do
+RSpec.describe "User visits Trips page and" do
 
   before :each do
-    @trip = Trip.create(duration: 63, start_date: 8, start_station: 13, end_date: 24, end_station: 23, bike_id: 10, subscription_type: 19, zip_code: 19)
+    @city = City.create(city: "San Jose")
+    @station = Station.create(name: "Station", dock_count: 1, city_id: @city.id, installation_date: "2017-08-13")
+    @date = BikeDate.bike_date_create("8/29/2013 14:14")
+    @bike = Bike.create(bike: 23)
+    @subscription = Subscription.create(subscription_type: "Customer")
+    @zip_code = ZipCode.create(zip_code: 90283)
+    @trip = Trip.create(duration: 63, start_date: @date, start_station: @station.id, end_date: @date, end_station: @station.id, bike_id: @bike.id, subscription_type: @subscription.id, zip_code: @zip_code.id)
   end
 
-  it "sees column headers" do
-
+  it "clicks create new trip" do
     visit '/trips'
 
-    expect(page).to have_content("Trip Start")
-    expect(page).to have_content("Trip End")
-    expect(page).to have_content("Trip Duration")
-    expect(page).to have_content("Starting Station")
-    expect(page).to have_content("Ending Station")
-    expect(page).to have_content("Bike Id")
-    expect(page).to have_content("Subscription Type")
-    expect(page).to have_content("Zipcode")
+    click_link("Create New Trip")
+
+    expect(current_path).to eq("/trips/new")
+    expect(page).to have_content("Create New Trip")
   end
 
-  it "sees link to homepage and edit button" do
-
+  it "clicks first trip id link" do
     visit '/trips'
 
-    page.should have_selector(:link_or_button, 'Home')
-    page.should have_selector(:link_or_button, 'Edit')
+    save_and_open_page
+
+    click_link("#{@trip.id}")
+
+    expect(current_path).to eq("/trips/#{@trip.id}")
+    expect(page).to have_content("#{@trip.id}")
+    expect(page).to have_content("#{@trip.duration}")
   end
 
-
-  it "takes you to the individual trips view when you click edit" do
+  it "clicks first trip edit link" do
 
     visit '/trips'
 
     click_link("Edit")
 
     expect(current_path).to eq("/trips/#{@trip.id}/edit")
-    expect(page).to have_content("Edit")
+    expect(page).to have_content("Edit A Trip")
   end
 
-  it "sees a delete button for each trips" do
+  it "clicks first trip delete button" do
 
     visit '/trips'
 
-    expect(page).to have_button('Delete')
+    click_button("Delete")
+
+    expect(current_path).to eq("/trips")
+    expect(page).to_not have_content("#{@trip.id}")
   end
-
-  it "takes you back to the tripsindex page when you click delete" do
-
-    visit '/trips'
-
-    click_button('Delete')
-
-    expect(current_path).to eq "/trips"
-    expect(page).to have_content("Trip Index")
-  end
-
-  #should add tests for pagination and ordered by date
-
 end

@@ -154,4 +154,21 @@ class BikeShareApp < Sinatra::Base
     erb :weather_dashboard
   end
 
+  post '/trips' do
+    files
+
+
+    params[:trip][:start_date] = BikeDate.form_date_create(params[:trip][:start_date])
+    params[:trip][:start_station] = Station.find_by(station_id: params[:trip][:start_station]).id
+    params[:trip][:end_date] = BikeDate.form_date_create(params[:trip][:end_date])
+    params[:trip][:end_station] = Station.find_by(station_id: params[:trip][:end_station]).id
+
+    if params[:trip][:duration] == ""
+      erb :"stations/error"
+    else
+      @trip = Trip.create!(params[:trip])
+      redirect "/trips/#{@trip.id}"
+    end
+  end
+
 end
