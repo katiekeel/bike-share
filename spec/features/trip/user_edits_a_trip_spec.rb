@@ -33,6 +33,8 @@ RSpec.describe "User updates a trip" do
 
   it "from /trips/:id/edit" do
 
+    visit "/trips/#{@trip.id}/edit"
+
     fill_in('trip[duration]', :with => 45)
     fill_in('trip[start_date]', :with => "2007-08-30T14:14")
     select "Adobe on Almaden", :from => "trip[start_station]"

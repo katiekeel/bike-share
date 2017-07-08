@@ -6,14 +6,17 @@ RSpec.describe "User visits weather index page and" do
   end
 
 
-  it "sees the weather days in the database" do
+  it "clicks the link to an individual day" do
     visit '/conditions'
 
-    expect(page).to have_content "ID"
-    expect(page).to have_content "1"
+    click_link("April 19, 2017")
+
+    expect(current_path).to eq("/conditions/#{@weather_day.id}")
+    expect(page).to have_content("April 19, 2017")
+    expect(page).to have_content("#{@weather_day.id}")
   end
 
-  it "takes you to the individual weather day view when you click edit" do
+  it "clicks the edit button" do
     visit '/conditions'
 
     click_link("Edit")
@@ -22,13 +25,7 @@ RSpec.describe "User visits weather index page and" do
     expect(page).to have_content("Edit")
   end
 
-  it "sees a delete button for each weather day" do
-    visit '/conditions'
-
-    expect(page).to have_button("Delete")
-  end
-
-  it "takes you back to the weather index page when you click delete" do
+  it "clicks the delete button" do
     visit '/conditions'
 
     click_button('Delete')

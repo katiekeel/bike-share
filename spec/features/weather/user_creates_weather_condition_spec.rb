@@ -28,10 +28,8 @@ RSpec.describe "User creates a new weather condition" do
   it "with invalid inputs" do
     visit '/conditions/new'
 
-    visit '/conditions/new'
-
     fill_in "condition[date_id]", with: "2018-04-19"
-    fill_in "condition[min_temp]", with: 1
+    fill_in "condition[max_temp]", with: 1
     fill_in "condition[mean_temp]", with: 1
     fill_in "condition[mean_humidity]", with: 1
     fill_in "condition[mean_visibility]", with: 1
