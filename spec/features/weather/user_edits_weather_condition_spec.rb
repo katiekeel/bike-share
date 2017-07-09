@@ -9,7 +9,7 @@ RSpec.describe "User updates a weather condition" do
   it "from /conditions" do
     visit "/conditions"
 
-    first(:link, "Edit Weather").click
+    first(:link, "Edit").click
 
     expect(current_path).to eq("/conditions/#{@weather_day.id}/edit")
 

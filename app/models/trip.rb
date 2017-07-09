@@ -1,6 +1,3 @@
-require 'will_paginate'
-require 'will_paginate/active_record'
-
 class Trip < ActiveRecord::Base
   belongs_to :starting_station, :class_name => "Station", :foreign_key => :start_station
   belongs_to :starting_date, :class_name => "BikeDate", :foreign_key => :start_date
@@ -18,20 +15,30 @@ class Trip < ActiveRecord::Base
   validates :bike_id, presence: true
   validates :subscription_type, presence: true
 
-#trip-dashboard
 
   def self.average_duration_of_a_ride
     average(:duration)
+  end
+
+  def self.day_with_longest_ride
+    trip = order("duration DESC").first
+    date = BikeDate.find(trip.start_date)
+    date
   end
 
   def self.longest_duration_of_a_ride
     maximum(:duration)
   end
 
+  def self.day_with_shortest_ride
+    trip = order("duration ASC").first
+    date = BikeDate.find(trip.start_date)
+    date
+  end
+
   def self.shortest_duration_of_a_ride
     minimum(:duration)
   end
-
 
   def self.start_station_with_most_rides
     trip_by_station = Trip.group(:start_station).count
@@ -129,4 +136,21 @@ class Trip < ActiveRecord::Base
     rescue ActiveRecord::RecordNotFound
   end
 
+  def self.number_of_customers
+    customers = Trip.where(subscription_type: 2)
+    customers.count
+  end
+
+  def self.number_of_subscribers
+    subscribers = Trip.where(subscription_type: 1)
+    subscribers.count
+  end
+
+  def self.percentage_of_subscribers
+    trips = Trip.count
+    subscribers = Trip.where(subscription_type: 1)
+    percent = (subscribers.count).to_f / (trips).to_f
+    percent = percent * 100
+    percent.round(2)
+  end
 end

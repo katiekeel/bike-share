@@ -8,13 +8,12 @@
 
     <thead>
       <th>#</th>
-      <th>Trip Start</th>
-      <th>Trip End</th>
-      <th>Trip Duration</th>
+      <th>Trip Date</th>
+      <th>Duration</th>
       <th>Starting Station</th>
       <th>Ending Station</th>
-      <th>Bike Id</th>
-      <th>Subscription Type</th>
+      <th>Bike</th>
+      <th>Subscription</th>
       <th>Zipcode</th>
     </thead>
 
@@ -22,14 +21,13 @@
     <% @trips.each do |trip| %>
       <tr>
         <th scope="row"><a href="/trips/<%= trip.id %>"><%= trip.id %></th>
-          <td><%= trip.duration %></a></td>
-          <td><%= trip.start_date %></td>
-          <td><%= trip.start_station %></td  >
-          <td><%= trip.end_date %></td>
-          <td><%= trip.end_station %></td>
-          <td><%= trip.bike_id %></td>
-          <td><%= trip.subscription_type %></td>
-          <td><%= trip.zip_code %></td>
+          <td><%= BikeDate.find(trip.start_date).date.strftime("%B %d, %Y") %></td>
+          <td><%= trip.duration %></td>
+          <td><%= Station.find(trip.start_station).name %></td>
+          <td><%= Station.find(trip.end_station).name %></td>
+          <td><%= Bike.find(trip.bike_id).bike %></td>
+          <td><%= Subscription.find(trip.subscription_type).subscription_type %></td>
+          <td><%= ZipCode.find(trip.zip_code).zip_code %></td>
           <td><button type="button"><a href="/trips/<%= trip.id %>/edit">Edit</a></button></td>
           <td><form action="/trips/<%= trip.id %>" method="post">
             <input type="hidden" name="_method" value="DELETE" />
@@ -40,7 +38,6 @@
 
 </table>
 
-<%= will_paginate @trips %>
-
-
 </div>
+
+<p><%= will_paginate @pages %></p>

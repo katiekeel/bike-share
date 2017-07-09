@@ -1,5 +1,11 @@
+require 'will_paginate'
+require 'will_paginate/active_record'
+
 class BikeShareApp < Sinatra::Base
-  include WillPaginate::Sinatra::Helpers
+
+  configure do
+    register WillPaginate::Sinatra
+  end
 
   def files
     @stations = Station.all
@@ -19,8 +25,9 @@ class BikeShareApp < Sinatra::Base
   end
 
   get '/trips' do
-    files
-    @trips = Trip.paginate(:page => params[:page], :per_page => 30)
+    Trip.connection
+    @pages = Trip.paginate(page: params[:page])
+    @trips = Trip.order('id ASC').page(params[:page])
     erb :"trips/index"
   end
 
@@ -110,7 +117,9 @@ class BikeShareApp < Sinatra::Base
   end
 
   get '/conditions' do
-    files
+    Condition.connection
+    @pages = Condition.paginate(page: params[:page])
+    @conditions = Condition.order('id ASC').page(params[:page])
     erb :"conditions/index"
   end
 

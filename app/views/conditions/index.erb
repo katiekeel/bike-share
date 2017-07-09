@@ -14,25 +14,25 @@
       <th>Max Temp</th>
       <th>Min Temp</th>
       <th>Mean Temp</th>
-      <th>Mean Humidity</th>
-      <th>Mean Visibility</th>
-      <th>Mean Wind Speed</th>
-      <th>Mean Precipitation</th>
+      <th>Humidity</th>
+      <th>Visibility</th>
+      <th>Wind Speed</th>
+      <th>Precipitation</th>
     </thead>
 
     <tbody>
     <% @conditions.each do |condition| %>
       <tr>
         <th scope="row"><%= condition.id %></th>
-          <td><a href="/conditions/<%= condition.id %>"><%= BikeDate.find(condition.date_id).date.strftime("%B %d, %Y") %></a></td>
-          <td><%= condition.max_temp %></td>
-          <td><%= condition.min_temp %></td>
-          <td><%= condition.mean_temp %></td>
-          <td><%= condition.mean_humidity %></td>
-          <td><%= condition.mean_visibility %></td>
-          <td><%= condition.mean_wind_speed %></td>
-          <td><%= condition.precipitation %></td>
-          <td><button type="button"><a href="/conditions/<%= condition.id %>/edit">Edit Weather</a></button></td>
+          <td><a href="/conditions/<%= condition.id %>"><%= BikeDate.find(condition.date_id).date.strftime("%b %d, %Y") %></a></td>
+          <td><%= condition.max_temp %> &#8457;</td>
+          <td><%= condition.min_temp %> &#8457;</td>
+          <td><%= condition.mean_temp %> &#8457;</td>
+          <td><%= condition.mean_humidity %>%</td>
+          <td><%= condition.mean_visibility %> mi</td>
+          <td><%= condition.mean_wind_speed %> mph</td>
+          <td><%= condition.precipitation %> in</td>
+          <td><button type="button"><a href="/conditions/<%= condition.id %>/edit">Edit</a></button></td>
           <td><form action="/conditions/<%= condition.id %>" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             <input type="submit" value="Delete" />
@@ -43,3 +43,5 @@
 </table>
 
 </div>
+
+<p><%= will_paginate @pages %></p>

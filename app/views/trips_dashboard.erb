@@ -6,7 +6,7 @@
 
       <div class="col-md-12">
         <h3 class="">Average Ride Duration</h3>
-        <h4><%= Trip.average_duration_of_a_ride %></h4>
+        <h4><%= (Trip.average_duration_of_a_ride / 60).round(2) %> minutes</h4>
       </div>
     </div>
 
@@ -15,12 +15,18 @@
     <div class="row">
       <div class="col-md-6">
         <h3 class="card-text">Longest Ride</h3>
-        <h4><%= Trip.longest_duration_of_a_ride %></h4>
+        <h4>Date: <%= Trip.day_with_longest_ride.date.strftime("%b %d, %Y") %></h4><br/>
+        <h4><%= Trip.longest_duration_of_a_ride %> seconds</h4>
+        <h4><%= Trip.longest_duration_of_a_ride / 60 %> minutes</h4>
+        <h4><%= (Trip.longest_duration_of_a_ride / 60) / 60 %> hours</h4>
+        <h4><%= ((Trip.longest_duration_of_a_ride / 60) / 60) / 24 %> days </h4>
+        <h5>(someone just took their bike home, probably)</h5>
       </div>
 
       <div class="col-md-6">
         <h3>Shortest Ride</h3>
-        <h4> <%= Trip.shortest_duration_of_a_ride %></h4>
+        <h4>Date: <%= Trip.day_with_shortest_ride.date.strftime("%b %d, %Y") %></h4><br/>
+        <h4> <%= Trip.shortest_duration_of_a_ride %> second</h4>
       </div>
     </div>
 
@@ -45,7 +51,7 @@
     <div class="row">
       <div class="col-md-12">
 
-        <h3>Monthly Breakdown</h3>
+        <h3>Trips by Month</h3>
 
         <table class="table">
 
@@ -241,14 +247,14 @@
     <div class="row">
       <div class="col-md-6">
         <h3>Most Ridden Bike</h3>
-        <h4><%= Trip.most_ridden_bike %></h4>
-        <h4><%= Trip.total_rides_for_most_ridden_bike %></h4>
+        <h4>Bike #<%= Trip.most_ridden_bike %></h4>
+        <h4>Rides: <%= Trip.total_rides_for_most_ridden_bike %></h4>
        </div>
 
        <div class="col-md-6">
          <h3>Least Ridden Bike</h3>
-         <h4><%= Trip.least_ridden_bike %></h4>
-         <h4><%= Trip.total_rides_for_least_ridden_bike %></h4>
+         <h4>Bike #<%= Trip.least_ridden_bike %></h4>
+         <h4>Rides: <%= Trip.total_rides_for_least_ridden_bike %></h4>
         </div>
     </div>
 
@@ -257,14 +263,14 @@
     <div class="row">
       <div class="col-md-6">
         <h3>Highest Number of Trips</h3>
-        <h4>Date <%= (Trip.date_with_most_trips).to_date %></h4>
-        <h4>Number of Trips <%= Trip.number_of_trips_on_day_with_most_trips %></h4>
+        <h4>Date: <%= (Trip.date_with_most_trips).strftime("%b %d, %Y") %></h4>
+        <h4>Number of Trips: <%= Trip.number_of_trips_on_day_with_most_trips %></h4>
       </div>
 
       <div class="col-md-6">
         <h3>Lowest Number of Trips</h3>
-        <h4>Date <%= ((Trip.date_with_least_trips).to_date) %></h4>
-        <h4>Number of Trips <%= Trip.number_of_trips_on_day_with_least_trips %></h4>
+        <h4>Date: <%= (Trip.date_with_least_trips).strftime("%b %d, %Y") %></h4>
+        <h4>Number of Trips: <%= Trip.number_of_trips_on_day_with_least_trips %></h4>
       </div>
     </div>
 
@@ -274,17 +280,17 @@
     <div class="row">
       <div class="col-md-4">
         <h3>Customers</h3>
-        <h4><%= Subscription.number_of_customers %></h4>
+        <h4><%= Trip.number_of_customers %></h4>
       </div>
 
       <div class="col-md-4">
         <h3>Subscribers</h3>
-        <h4><%= Subscription.number_of_subscribers %></h4>
+        <h4><%= Trip.number_of_subscribers %></h4>
       </div>
 
       <div class="col-md-4">
         <h3>Percentage of Subscribers</h3>
-        <h4><%= Subscription.percentage_of_subscribers %></h4>
+        <h4><%= Trip.percentage_of_subscribers %>%</h4>
       </div>
     </div>
 
